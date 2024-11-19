@@ -1,0 +1,7 @@
+actor hero : DoomPlayer replaces DoomPlayer
+{
+  +NoGravity
+  Player.FlyBob 0
+  Player.ForwardMove 0
+  Player.SideMove 0
+}
