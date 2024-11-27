@@ -1,0 +1,6 @@
+[enu]
+
+MSG_ROOM1_SKULL = "IT'S THE SKULL OF SOME\n"
+                  "CREATURE. ITS MEANING\n"
+                  "SEEMS QUITE CLEAR: DEATH\n"
+                  "LURKS INSIDE.";

@@ -1,2 +1,45 @@
 #library "shadowgate"
 #include "zcommon.acs"
+
+script "ClearMsg" ( int id )
+{
+  HudMessage(s:""; 0,id,-1,0,0,0);
+}
+
+script "Select_Puff" (void)
+{
+  LineAttack(0, GetActorAngle(0), GetActorPitch(0), 0, "cursor_puff");
+}
+
+str look_msg[1] =
+{
+  "$MSG_ROOM1_SKULL"
+};
+
+script 1 (int thing_index)
+{
+  switch(thing_index)
+  {
+    case 0:
+      switch (StrMid(GetWeapon(), 7, 99))
+      {
+        case "Point":
+        case "Look":
+          HudMessageBold (s:"success"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
+          break;
+        default:
+          HudMessageBold (s:"default"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
+          break;
+      }
+      break;
+    case 1:
+     HudMessageBold (s:"door"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
+     break; 
+  }
+}
+
+script "display_look_msg" (int msg_index)
+{
+//  HudMessageBold (s:look_msg[msg_index]; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
+  HudMessageBold (s:"success"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
+}

@@ -1,0 +1,4 @@
+#include "actors/player.txt"
+
+#include "actors/objects.txt"
+#include "actors/objects/room01.txt"

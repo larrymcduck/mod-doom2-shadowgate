@@ -1,0 +1,15 @@
+actor Shadowgate_Object
+{
+  Tag "shadowgate_object"
+  
+  -SOLID
+  +NOBLOCKMAP
+  +NoGravity
+  
+  States
+  {
+    Spawn:
+      TNT1 A -1
+      Stop
+  }
+}

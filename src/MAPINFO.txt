@@ -1,0 +1,6 @@
+map MAP01 "Castle Shadowgate"
+{
+	next = "EndTitle"
+	music = "MUSIC1"
+	sky1 = "SKY1"
+}

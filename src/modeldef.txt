@@ -1,0 +1,11 @@
+// Room 1
+
+Model room01_Skull
+{
+  Path "models/room01"
+  Model 0 "rm1_06.md2"
+  Skin 0 "rm1_06.png"
+  Scale 20.0 20.0 20.0
+  Offset 0.0 6.0 0.0
+  FrameIndex R1SK A 0 0
+}

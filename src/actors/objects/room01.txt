@@ -1,0 +1,14 @@
+actor room01_Skull : Shadowgate_Object 10000
+{
+  Tag "Room 1 - Skull"
+
+  Radius 3
+  Height 16
+  
+  States
+  {
+    Spawn:
+      R1SK A -1
+      Stop
+  }
+}
