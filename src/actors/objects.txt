@@ -1,10 +1,13 @@
-actor Shadowgate_Object
+actor room_object
 {
   Tag "shadowgate_object"
   
   -SOLID
-  +NOBLOCKMAP
   +NoGravity
+  +Shootable
+  Health 100
+  PainChance 255
+  +FORCEPAIN
   
   States
   {

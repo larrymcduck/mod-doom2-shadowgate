@@ -1,5 +1,14 @@
-actor ShadowgatePlayer : DoomPlayer replaces DoomPlayer
+actor ShadowgatePlayer : PlayerPawn
 {
+  Speed 1
+  Health 100
+  Radius 16
+  Height 56
+  Mass 100
+  PainChance 255
+  
+  Player.DisplayName "Hero"
+    
   Player.ForwardMove 0
   Player.SideMove 0
   Player.JumpZ 0
@@ -23,6 +32,59 @@ actor ShadowgatePlayer : DoomPlayer replaces DoomPlayer
   Player.WeaponSlot 7, Cursor_Leave
   Player.WeaponSlot 8, Cursor_Speak
   Player.WeaponSlot 9, Cursor_Point
+
+States
+  {
+  Spawn:
+    PLAY A -1
+    Loop
+  See:
+    PLAY ABCD 4 
+    Loop
+  Missile:
+    PLAY E 12
+    Goto Spawn
+  Melee:
+    PLAY F 6 BRIGHT
+    Goto Missile
+  Pain:
+    PLAY G 4 
+    PLAY G 4 A_Pain
+    Goto Spawn
+  Death:
+    PLAY H 0 A_PlayerSkinCheck("AltSkinDeath")
+  Death1:
+    PLAY H 10
+    PLAY I 10 A_PlayerScream
+    PLAY J 10 A_NoBlocking
+    PLAY KLM 10
+    PLAY N -1
+    Stop
+  XDeath:
+    PLAY O 0 A_PlayerSkinCheck("AltSkinXDeath")
+  XDeath1:
+    PLAY O 5
+    PLAY P 5 A_XScream
+    PLAY Q 5 A_NoBlocking
+    PLAY RSTUV 5
+    PLAY W -1
+    Stop
+  AltSkinDeath:
+    PLAY H 6
+    PLAY I 6 A_PlayerScream
+    PLAY JK 6
+    PLAY L 6 A_NoBlocking
+    PLAY MNO 6
+    PLAY P -1
+    Stop
+  AltSkinXDeath:
+    PLAY Q 5 A_PlayerScream
+    PLAY R 0 A_NoBlocking
+    PLAY R 5 A_SkullPop
+    PLAY STUVWX 5
+    PLAY Y -1
+    Stop
+  }
 }
 
 actor cursor_puff
@@ -40,12 +102,6 @@ actor cursor_puff
   
   States
   {
-    Crash:
-      CLIP AAA 1
-      Stop
-    XDeath:
-      CLIP AAA 1
-      Stop
     Spawn:
       CLIP AAA 1
       Stop
@@ -54,39 +110,78 @@ actor cursor_puff
 
 actor cursor_base : Weapon
 {
+  RenderStyle "None"
+  
   States
   {
     Spawn:
-      TNT1 A -1
+      CLIP A -1
       Stop    
     Select:
-      TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+      CLIP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
       Loop
     Deselect:
-      TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+      CLIP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
       Loop
     Ready:
-      TNT1 A 1 A_WeaponReady
+      CLIP A 1 A_WeaponReady
       Loop
     Fire:
-      TNT1 A 1 ACS_NamedExecuteAlways("Select_Puff", 0)
-      TNT1 A 1 A_ReFire
-      TNT1 A 1
+      CLIP A 1 
+      CLIP A 1 A_ReFire
+      CLIP A 1
       Goto Ready
     AltHold:
+      CLIP A 1
+      CLIP A 1 A_ReFire
+      CLIP A 1
+      Goto Ready
     Hold:
-      TNT1 A 1
-      TNT1 A 1 A_ReFire
-      TNT1 A 1
+      CLIP A 1
+      CLIP A 1 A_ReFire
+      CLIP A 1
       Goto Ready
     AltFire:
-      TNT1 A 1 A_SelectWeapon("Cursor_Point")
-      TNT1 A 1 A_ReFire
+      CLIP A 1 A_SelectWeapon("Cursor_Point")
+      CLIP A 1 A_ReFire
       Goto Ready
   }
 }
 
-actor Cursor_Point : Cursor_base { Tag "Point" }
+Actor Point_Puff
+{
+  DamageType "Point"
+  VSpeed 0
+  Mass 5
+  Radius 2
+  Height 4
+  RenderStyle "None"
+	+NOGRAVITY
+	+NOTELEPORT
+	+BLOODLESSIMPACT
+	+NOBLOCKMAP
+	+PuffOnActors
+	+AlwaysPuff
+	States
+	{
+	  Spawn:
+	    CLIP AAA 1
+	    Stop
+	}
+}
+
+actor Cursor_Point : Cursor_base
+{ 
+  Tag "Point"
+  States
+  {
+    Fire:
+      CLIP A 1 A_FireBullets(0, 0, 1, 1, "Point_Puff") 
+      CLIP A 1 A_ReFire
+      CLIP A 1
+      Goto Ready
+  }
+}
 actor Cursor_Look : Cursor_base { Tag "Look" }
 actor Cursor_Take : Cursor_base { Tag "Take" }
 actor Cursor_Open : Cursor_base { Tag "Open" }

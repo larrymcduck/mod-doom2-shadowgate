@@ -1,45 +1,33 @@
 #library "shadowgate"
 #include "zcommon.acs"
 
-script "ClearMsg" ( int id )
+int playerTid = 5000;
+int hudWidth = 640;
+int hudHeight = 380;
+
+script "on_enter" ENTER
 {
-  HudMessage(s:""; 0,id,-1,0,0,0);
+  Thing_ChangeTID(0, playerTid);
 }
 
-script "Select_Puff" (void)
+script "room01_skull" (int action)
 {
-  LineAttack(0, GetActorAngle(0), GetActorPitch(0), 0, "cursor_puff");
-}
-
-str look_msg[1] =
-{
-  "$MSG_ROOM1_SKULL"
-};
-
-script 1 (int thing_index)
-{
-  switch(thing_index)
+  str message = "";
+  switch (action)
   {
     case 0:
-      switch (StrMid(GetWeapon(), 7, 99))
-      {
-        case "Point":
-        case "Look":
-          HudMessageBold (s:"success"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
-          break;
-        default:
-          HudMessageBold (s:"default"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
-          break;
-      }
-      break;
     case 1:
-     HudMessageBold (s:"door"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
-     break; 
+      message = "$$MSG_ROOM1_SKULL";
+      break;
   }
-}
-
-script "display_look_msg" (int msg_index)
-{
-//  HudMessageBold (s:look_msg[msg_index]; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
-  HudMessageBold (s:"success"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 240.0, 9999.0);
+  
+  SetActorProperty(0,APROP_Health,100);
+  
+  SetActivator(playerTid);
+  SetHudSize(hudWidth, hudHeight, FALSE);
+  HudMessage(l:"MSG_ROOM1_SKULL"; HUDMSG_PLAIN, 0, "CR_BLACK", 320.0, 190.0, 0); // find correct Y position
+  
+  // show waiting blinking pen
+  // take all weapons
+  // select continue
 }

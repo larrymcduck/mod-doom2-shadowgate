@@ -1,4 +1,5 @@
 height 0;
+Resolution 640,380;
 monospacefonts true, "0";
 interpolatehealth true, 6;
 
