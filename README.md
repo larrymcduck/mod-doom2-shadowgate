@@ -1,1 +1,2 @@
-# mod-doom2-shadowgate
+# Shadowgate
+## Doom2 mod

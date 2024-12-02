@@ -1,6 +1,33 @@
 [enu]
 
-MSG_ROOM1_SKULL = "IT'S THE SKULL OF SOME\n"
-                  "CREATURE. ITS MEANING\n"
-                  "SEEMS QUITE CLEAR: DEATH\n"
-                  "LURKS INSIDE.";
+// --- common ---
+MSG_COMMON_NO_OPEN = "IT WON'T OPEN!";
+
+MSG_COMMON_NO_TAKE = "YOU CAN'T TAKE IT!";
+
+MSG_COMMON_NOTHING = "NOTHING HAPPENED.";
+
+MSG_COMMON_NO_USE = "YOU CAN'T USE WHAT YOU\n"
+                    "DIDN'T TAKE.";
+
+MSG_COMMON_NO_LEAVE = "YOU CAN'T DROP WHAT YOU\n"
+                      "DIDN'T TAKE.";
+
+MSG_COMMON_EXPECTED = "WHAT YOU EXPECTED HASN'T\n"
+                      "HAPPENED.";
+
+MSG_COMMON_OUCH = "OUCH! THAT SMARTS!";
+
+// --- common ---
+
+
+// --- room 1 ---
+
+MSG_ROOM1_SKULL_LOOK = "IT'S THE SKULL OF SOME\n"
+                       "CREATURE. ITS MEANING\n"
+                       "SEEMS QUITE CLEAR: DEATH\n"
+                       "LURKS INSIDE.";
+
+MSG_ROOM1_KEY1_LOOK = "IT'S A SMALL IRON KEY.";
+
+// --- room 1 ---

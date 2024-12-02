@@ -5,7 +5,17 @@ Model room01_Skull
   Path "models/room01"
   Model 0 "rm1_06.md2"
   Skin 0 "rm1_06.png"
-  Scale 20.0 20.0 20.0
-  Offset 0.0 6.0 0.0
+  Scale 16.12 16.12 19.29
+  Offset 0.0 5.0 0.0
   FrameIndex R1SK A 0 0
+}
+
+Model room01_Key1
+{
+  Path "models/room01"
+  Model 0 "rm1_key.md2"
+  Skin 0 "rm1_key.png"
+  Scale 16.12 16.12 19.29
+  Offset 0.0 0.0 0.0
+  FrameIndex KEY1 A 0 0
 }

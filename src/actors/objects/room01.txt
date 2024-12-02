@@ -1,8 +1,10 @@
-actor room01_Skull : room_object 10000
+Actor room01_Skull : room_object 10000
 {
-  Tag "Room 1 - Skull"
+  Tag "Door Skull"
+  //$Category "Room 01"
+  //$NotAngled
 
-  Radius 3
+  Radius 7
   Height 16
   
   States
@@ -11,19 +13,84 @@ actor room01_Skull : room_object 10000
       R1SK A -1
       Stop
     Pain.Point:
-      R1SK A 0
-      R1SK A 1 ACS_NamedExecuteAlways("room01_skull", 0, 0)
-      R1SK A 0
-      Goto Spawn
     Pain.Look:
-      R1SK A 0
-      R1SK A 1 ACS_NamedExecuteAlways("room01_skull", 0, 0)
-      R1SK A 0
+      R1SK A 1 ACS_NamedExecute("room01_skull", 0, 0)
+      Goto Spawn
+    Pain.Take:
+      R1SK A 1  ACS_NamedExecute("common_msg", 0, 0)
       Goto Spawn
     Pain.Open:
-      R1SK A 0
-      R1SK A 1
-      R1SK A 0
+      R1SK A 1 ACS_NamedExecute("room01_skull", 0, 1)
+      Goto Spawn
+    Pain.Close:
+      R1SK A 1 ACS_NamedExecute("room01_skull", 0, 2)
+      Goto Spawn
+    Pain.Use:
+    Pain.Hit:
+      R1SK A 1 ACS_NamedExecute("common_msg", 0, 2)
+      Goto Spawn
+    Pain.Leave:
+      R1SK A 1 ACS_NamedExecute("common_msg", 0, 5)
+      Goto Spawn
+    Pain.Speak:
+      R1SK A 1 ACS_NamedExecute("common_msg", 0, 6)
       Goto Spawn
   }
+}
+
+Actor room01_Key1 : room_object 10001
+{
+  Tag "Key 1 (map)"
+  //$Category "Room 01"
+  //$NotAngled
+
+  Radius 4
+  Height 6
+  
+  States
+  {
+    Spawn:
+      KEY1 A -1
+      Stop
+    Pain.Point:
+    Pain.Look:
+      KEY1 A 1 ACS_NamedExecute("room01_key1", 0, 0)
+      Goto Spawn
+    Pain.Take:
+      KEY1 A 1 ACS_NamedExecute("room01_key1", 0, 1)
+      Goto Spawn
+    Pain.Open:
+      KEY1 A 1 ACS_NamedExecute("common_msg", 0, 1)
+      Goto Spawn
+    Pain.Close:
+    Pain.Hit:
+      KEY1 A 1 ACS_NamedExecute("common_msg", 0, 2)
+      Goto Spawn
+    Pain.Use:
+      KEY1 A 1 ACS_NamedExecute("common_msg", 0, 3)
+      Goto Spawn
+    Pain.Leave:
+      KEY1 A 1 ACS_NamedExecute("common_msg", 0, 5)
+      Goto Spawn
+    Pain.Speak:
+      KEY1 A 1 ACS_NamedExecute("common_msg", 0, 6)
+      Goto Spawn
+  }
+}
+
+Actor inv_Key1 : Inventory 
+{
+  Tag "Key 1"
+  //$Category "Room 01"
+  //$NotAngled
+
+  Inventory.Icon KEY1A0
+  Inventory.MaxAmount 1
+	+Inventory.Invbar
+	States
+	{
+	  Spawn:
+	    KEY1 A -1
+	    Stop
+	}
 }

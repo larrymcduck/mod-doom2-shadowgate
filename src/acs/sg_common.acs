@@ -1,0 +1,170 @@
+#library "sg_common"
+#include "zcommon.acs"
+
+int room_num = 1;
+
+str message = "";
+str thing_tag = "";
+str thing_str = "";
+str item_taken = "";
+
+int playerTid = 5000;
+int hudWidth = 640;
+int hudHeight = 380;
+
+int messageY = 300.0;
+
+int messages_left = 0;
+
+int msg_pen_layer = 1;
+int msg_text_layer = 2;
+int msg_back_layer = 3;
+
+script "on_enter" ENTER
+{
+  // check if map01
+  Thing_ChangeTID(0, playerTid);
+}
+
+script "show_message" (void)
+{
+  SetActivator(playerTid);
+    
+  SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
+  
+  SetHudSize(hudWidth, hudHeight, FALSE);
+
+  SetFont("msgback");
+  HudMessage(s:"A"; HUDMSG_PLAIN, 3, "CR_UNTRANSLATED", 320.0, messageY, 0);
+
+  while (messages_left > 0)
+  {
+    SetFont("SMALLFONT");
+    HudMessage(s:message; HUDMSG_PLAIN, 2, "CR_BLACK", 320.0, messageY, 0);
+
+    while (true)
+    {
+      int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+      if (buttons & BT_ATTACK)
+      {
+        Delay(1);
+      }
+      else
+      {
+        break;
+      }
+    }
+
+    while (true)
+    {
+      buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+      if (buttons & BT_ATTACK)
+      {
+        break;
+      }
+      else
+      {
+        Delay(1);
+      }
+    }
+  
+    // show waiting blinking pen
+    // take all weapons
+    // select continue
+  
+    messages_left--;
+  }
+
+  ACS_NamedExecute("clear_message", 0);
+}
+
+script "clear_message" (void)
+{
+  while (true)
+  {
+    int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+    if (buttons & BT_ATTACK)
+    {
+      Delay(1);
+    }
+    else
+    {
+      break;
+    }
+  }
+
+  message = "";
+  thing_tag = "";
+  item_taken = "";
+
+  SetPlayerProperty(1, 0, PROP_TOTALLYFROZEN);
+  
+  SetFont("");
+  HudMessage(s:""; HUDMSG_PLAIN, 2, "CR_BLACK", 320.0, messageY, 0);
+  HudMessage(s:""; HUDMSG_PLAIN, 3, "CR_BLACK", 320.0, messageY, 0);
+
+}
+
+script "common_msg" (int msg_type)
+{
+  messages_left = 1;
+  switch(msg_type)
+  {
+    case 0: // you can't take it!
+      message = StrParam(l:"MSG_COMMON_NO_TAKE");
+      break;
+    case 1: // it won't open!
+      message = StrParam(l:"MSG_COMMON_NO_OPEN");
+      break;
+    case 2: // nothing happened.
+      message = StrParam(l:"MSG_COMMON_NOTHING");
+      break;
+    case 3: // use
+      message = StrParam(l:"MSG_COMMON_NO_USE");
+      break;
+      break;
+    case 4: // hit
+      break;
+    case 5: // you can't drop what you didn't take.
+      message = StrParam(l:"MSG_COMMON_NO_LEAVE");
+      break;
+    case 6: // what you expected hasn't happened.
+      message = StrParam(l:"MSG_COMMON_EXPECTED");
+      break;
+  }
+
+  ACS_NamedExecute("show_message", 0);
+}
+
+script "on_look" (void)
+{
+  messages_left = 1;
+  message = StrParam(l:StrParam(s:"MSG_ROOM", i:room_num, s:"_", s:thing_tag, s:"_LOOK"));
+  ACS_NamedExecute("show_message", 0);
+}
+
+script "on_take" (void)
+{
+  messages_left = 1;
+  Thing_Remove(0);
+  SetActivator(playerTid);
+
+  GiveInventory(item_taken, 1);
+  message = StrParam(s:thing_str, s:" IS IN HAND.");
+  
+  ACS_NamedExecute("show_message", 0);
+}
+
+script "on_open" (void)
+{
+  messages_left = 1;
+  message = StrParam(s:thing_str, s:" IS OPENED.");
+  ACS_NamedExecute("show_message", 0);  
+}
+
+script "on_close" (void)
+{
+  messages_left = 1;
+  message = StrParam(s:thing_str, s:" IS CLOSED.");
+  ACS_NamedExecute("show_message", 0);  
+}

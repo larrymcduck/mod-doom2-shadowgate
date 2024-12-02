@@ -1,0 +1,43 @@
+#library "sg_room_01"
+#include "zcommon.acs"
+#import "sg_common.acs"
+
+script "room01_skull" (int action)
+{
+  thing_tag = "SKULL";
+  thing_str = "THE SKULL";
+
+  switch (action)
+  {
+    case 0:
+      ACS_NamedExecute("on_look", 0);
+      break;
+    case 1:
+      // open
+      // AS IF BY MAGIC, THE
+      // SKULL RISES.
+      ACS_NamedExecute("on_open", 0);
+      break;
+    case 2:
+      // close
+      ACS_NamedExecute("on_close", 0);
+      break;
+  }
+}
+
+script "room01_key1" (int action)
+{
+  thing_tag = "KEY1";
+  thing_str = "KEY 1";
+  item_taken = "inv_Key1";
+
+  switch (action)
+  {
+    case 0:
+      ACS_NamedExecute("on_look", 0);
+      break;
+    case 1:
+      ACS_NamedExecute("on_take", 0);
+      break;
+  }
+}

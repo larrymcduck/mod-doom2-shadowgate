@@ -1,18 +1,20 @@
 actor room_object
 {
-  Tag "shadowgate_object"
-  
+  Mass 999999
   -SOLID
   +NoGravity
   +Shootable
   Health 100
-  PainChance 255
+  PainChance 256
   +FORCEPAIN
   
   States
   {
     Spawn:
-      TNT1 A -1
+      NONE A -1
+      Stop
+    Death:
+      NONE AAA 1
       Stop
   }
 }

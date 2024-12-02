@@ -13,6 +13,7 @@ actor ShadowgatePlayer : PlayerPawn
   Player.SideMove 0
   Player.JumpZ 0
   Player.ViewHeight 48
+  Player.AttackZOffset 16
   
   Player.StartItem Cursor_Point
   Player.StartItem Cursor_Look
@@ -103,7 +104,7 @@ actor cursor_puff
   States
   {
     Spawn:
-      CLIP AAA 1
+      NONE AAA 1
       Stop
   }
 }
@@ -115,35 +116,35 @@ actor cursor_base : Weapon
   States
   {
     Spawn:
-      CLIP A -1
+      NONE A -1
       Stop    
     Select:
-      CLIP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+      NONE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
       Loop
     Deselect:
-      CLIP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+      NONE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
       Loop
     Ready:
-      CLIP A 1 A_WeaponReady
+      NONE A 1 A_WeaponReady
       Loop
     Fire:
-      CLIP A 1 
-      CLIP A 1 A_ReFire
-      CLIP A 1
+      NONE A 1 
+      NONE A 1 A_ReFire
+      NONE A 1
       Goto Ready
     AltHold:
-      CLIP A 1
-      CLIP A 1 A_ReFire
-      CLIP A 1
+      NONE A 1
+      NONE A 1 A_ReFire
+      NONE A 1
       Goto Ready
     Hold:
-      CLIP A 1
-      CLIP A 1 A_ReFire
-      CLIP A 1
+      NONE A 1
+      NONE A 1 A_ReFire
+      NONE A 1
       Goto Ready
     AltFire:
-      CLIP A 1 A_SelectWeapon("Cursor_Point")
-      CLIP A 1 A_ReFire
+      NONE A 1 A_SelectWeapon("Cursor_Point")
+      NONE A 1 A_ReFire
       Goto Ready
   }
 }
@@ -165,7 +166,7 @@ Actor Point_Puff
 	States
 	{
 	  Spawn:
-	    CLIP AAA 1
+	    NONE AAA 1
 	    Stop
 	}
 }
@@ -176,17 +177,153 @@ actor Cursor_Point : Cursor_base
   States
   {
     Fire:
-      CLIP A 1 A_FireBullets(0, 0, 1, 1, "Point_Puff") 
-      CLIP A 1 A_ReFire
-      CLIP A 1
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Point_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
       Goto Ready
   }
 }
-actor Cursor_Look : Cursor_base { Tag "Look" }
-actor Cursor_Take : Cursor_base { Tag "Take" }
-actor Cursor_Open : Cursor_base { Tag "Open" }
-actor Cursor_Close : Cursor_base { Tag "Close" }
-actor Cursor_Use : Cursor_base { Tag "Use" }
-actor Cursor_Hit : Cursor_base { Tag "Hit" }
-actor Cursor_Leave : Cursor_base { Tag "Leave" }
-actor Cursor_Speak : Cursor_base { Tag "Speak" }
+
+Actor Look_Puff : Point_Puff
+{
+  DamageType "Look"
+}
+
+actor Cursor_Look : Cursor_base
+{ 
+  Tag "Look"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Look_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}
+
+Actor Take_Puff : Point_Puff
+{
+  DamageType "Take"
+}
+
+actor Cursor_Take : Cursor_base
+{ 
+  Tag "Take"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Take_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}
+
+Actor Open_Puff : Point_Puff
+{
+  DamageType "Open"
+}
+
+actor Cursor_Open : Cursor_base
+{ 
+  Tag "Open"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Open_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}
+
+Actor Close_Puff : Point_Puff
+{
+  DamageType "Close"
+}
+
+actor Cursor_Close : Cursor_base
+{ 
+  Tag "Close"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Close_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}
+
+Actor Use_Puff : Point_Puff
+{
+  DamageType "Use"
+}
+
+actor Cursor_Use : Cursor_base
+{ 
+  Tag "Use"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Use_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}
+
+Actor sg_Hit_Puff : Point_Puff
+{
+  DamageType "Hit"
+}
+
+actor Cursor_Hit : Cursor_base
+{ 
+  Tag "Hit"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "sg_Hit_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}
+
+Actor Leave_Puff : Point_Puff
+{
+  DamageType "Leave"
+}
+
+actor Cursor_Leave : Cursor_base
+{ 
+  Tag "Leave"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Leave_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}
+
+Actor Speak_Puff : Point_Puff
+{
+  DamageType "Speak"
+}
+
+actor Cursor_Speak : Cursor_base
+{ 
+  Tag "Speak"
+  States
+  {
+    Fire:
+      NONE A 1 A_FireBullets(0, 0, 1, 1, "Speak_Puff") 
+      NONE A 1 A_ReFire
+      NONE A 1
+      Goto Ready
+  }
+}

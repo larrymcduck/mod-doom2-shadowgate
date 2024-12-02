@@ -1,1 +1,2 @@
-shadowgate
+sg_common
+sg_room_01
