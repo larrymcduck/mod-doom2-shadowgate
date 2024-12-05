@@ -9,7 +9,7 @@ maps
 	{
 		defaultwalltexture = "STARTAN2";
 		overridemiddletexture = false;
-		defaultceiltexture = "CEIL1_1";
+		defaultceiltexture = "F_SKY1";
 		overrideceiltexture = false;
 		custombrightness = 196;
 		scriptcompiler = "zandronum_acs.cfg";
@@ -37,8 +37,8 @@ maps
 				requiredarchives = "";
 			}
 		}
-		viewpositiony = -25.45086f;
-		viewpositionx = 0.8980678f;
+		viewpositiony = 32577.82f;
+		viewpositionx = -32593.75f;
 		
 		testprecommand
 		{
@@ -58,11 +58,11 @@ maps
 			gridrotate = 0;
 			backscalex = 100;
 			gridoriginx = 0;
-			gridsize = 64;
+			gridsize = 8;
 			background = "";
 			backoffsety = 0;
 		}
-		viewscale = 2.971522f;
+		viewscale = 31.51144f;
 		
 		reloadresourceprecommand
 		{
@@ -73,7 +73,7 @@ maps
 		defaulttoptexture = "STARTAN2";
 		overridebottomtexture = false;
 		defaultbottomtexture = "STARTAN2";
-		defaultfloortexture = "FLOOR0_1";
+		defaultfloortexture = "RM1_09";
 		overrideceilheight = false;
 		overridebrightness = false;
 		

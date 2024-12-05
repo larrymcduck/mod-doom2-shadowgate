@@ -15,7 +15,7 @@ Model room01_Key1
   Path "models/room01"
   Model 0 "rm1_key.md2"
   Skin 0 "rm1_key.png"
-  Scale 16.12 16.12 19.29
-  Offset 0.0 0.0 0.0
+  Scale 16.12 14.12 19.29
+  Offset 0.0 3.0 0.0
   FrameIndex KEY1 A 0 0
 }

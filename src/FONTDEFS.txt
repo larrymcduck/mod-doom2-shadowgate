@@ -1,0 +1,4 @@
+SHADOWGATE
+{
+  Template SGATE%03d
+}
