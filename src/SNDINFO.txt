@@ -1,0 +1,2 @@
+DoorOpenClose sgdoor
+$limit DoorOpenClose 0

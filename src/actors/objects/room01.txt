@@ -45,7 +45,7 @@ Actor room01_Key1 : room_object 10001
   //$NotAngled
 
   Radius 4
-  Height 6
+  Height 8
   
   States
   {
@@ -93,4 +93,99 @@ Actor inv_Key1 : Inventory
 	    KEY1 A -1
 	    Stop
 	}
+}
+
+Actor room01_Door : room_object 10002
+{
+  Tag "Door"
+  //$Category "Room 01"
+  //$NotAngled
+
+  Radius 4
+  Height 79
+  
+  States
+  {
+    Spawn:
+      NONE A -1
+      Stop
+    Pain.Point:
+      NONE A 1 ACS_NamedExecute("room01_door", 0, 0)
+      Goto Spawn
+    Pain.Look:
+      NONE A 1 ACS_NamedExecute("room01_door", 0, 1)
+      Goto Spawn
+    Pain.Take:
+      NONE A 1  ACS_NamedExecute("common_msg", 0, 0)
+      Goto Spawn
+    Pain.Open:
+      NONE A 1 ACS_NamedExecute("room01_door", 0, 2)
+      Goto Spawn
+    Pain.Close:
+      NONE A 1 ACS_NamedExecute("room01_door", 0, 3)
+      Goto Spawn
+    Pain.Use:
+      NONE A 1 ACS_NamedExecute("common_msg", 0, 7)
+      Goto Spawn
+    Pain.Hit:
+      NONE A 1 ACS_NamedExecute("common_msg", 0, 2)
+      Goto Spawn
+    Pain.Leave:
+      NONE A 1 ACS_NamedExecute("common_msg", 0, 5)
+      Goto Spawn
+    Pain.Speak:
+      NONE A 1 ACS_NamedExecute("common_msg", 0, 6)
+      Goto Spawn
+  }
+}
+
+Actor room01_Wall : room_object 10003
+{
+  Tag "Wall"
+  //$Category "Room 01"
+  //$NotAngled
+
+  Radius 4
+  Height 144
+  
+  States
+  {
+    Spawn:
+      NONE A -1
+      Stop
+    Pain.Point:
+      NONE A 1 ACS_NamedExecute("room01_wall", 0, 0)
+      Goto Spawn
+    Pain.Look:
+      NONE A 1 ACS_NamedExecute("room01_door", 0, 0)
+      Goto Spawn
+    Pain.Take:
+      NONE A 1  ACS_NamedExecute("common_msg", 0, 0)
+      Goto Spawn
+    Pain.Open:
+      NONE A 1 ACS_NamedExecute("room01_door", 0, 1)
+      Goto Spawn
+    Pain.Close:
+      NONE A 1 ACS_NamedExecute("room01_door", 0, 2)
+      Goto Spawn
+    Pain.Use:
+    Pain.Hit:
+      NONE A 1 ACS_NamedExecute("common_msg", 0, 2)
+      Goto Spawn
+    Pain.Leave:
+      NONE A 1 ACS_NamedExecute("common_msg", 0, 5)
+      Goto Spawn
+    Pain.Speak:
+      NONE A 1 ACS_NamedExecute("common_msg", 0, 6)
+      Goto Spawn
+  }
+}
+
+Actor room01_Wall_2 : room01_Wall 10004
+{
+  Tag "Wall top"
+  //$Category "Room 01"
+  //$NotAngled
+
+  Height 48
 }

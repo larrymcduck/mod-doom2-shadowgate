@@ -2,6 +2,9 @@
 #include "zcommon.acs"
 #import "sg_common.acs"
 
+int room1_skull_status = 0;
+int room1_door_status = 0;
+
 script "room01_skull" (int action)
 {
   thing_tag = "SKULL";
@@ -13,16 +16,59 @@ script "room01_skull" (int action)
       ACS_NamedExecute("on_look", 0);
       break;
     case 1:
-      // open
-      // AS IF BY MAGIC, THE
-      // SKULL RISES.
-      ACS_NamedExecute("on_open", 0);
+      if (room1_skull_status == 0)
+      {
+        ACS_NamedExecute("room01_skull_open", 0);
+      }
+      else
+      {
+        ACS_NamedExecute("on_open", 0);
+      }
       break;
     case 2:
-      // close
-      ACS_NamedExecute("on_close", 0);
+      if (room1_skull_status == 0)
+      {
+        ACS_NamedExecute("on_close", 0);
+      }
+      else
+      {
+        ACS_NamedExecute("room01_skull_close", 0);
+      }
+      break;
       break;
   }
+}
+
+script "room01_skull_open" (void)
+{
+  SetActivator(playerTid);
+  SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
+
+  while (GetActorZ(5) < 87.0)
+  {
+    SetActorPosition(5, GetActorX(5), GetActorY(5), GetActorZ(5) + 0.1, 0);
+    Delay(1);
+  }
+  
+  room1_skull_status = 1;
+
+  messages[0] = StrParam(l:"MSG_ROOM1_SKULL_OPEN");
+  ACS_NamedExecute("show_message", 0);
+}
+
+script "room01_skull_close" (void)
+{
+  SetActivator(playerTid);
+  SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
+
+  while (GetActorZ(5) > 75.0)
+  {
+    SetActorPosition(5, GetActorX(5), GetActorY(5), GetActorZ(5) - 0.1, 0);
+    Delay(1);
+  }
+  
+  room1_skull_status = 0;
+  ACS_NamedExecute("on_close", 0);
 }
 
 script "room01_key1" (int action)
@@ -38,6 +84,158 @@ script "room01_key1" (int action)
       break;
     case 1:
       ACS_NamedExecute("on_take", 0);
+      break;
+  }
+}
+
+script "room01_door" (int action)
+{
+  thing_tag = "DOOR";
+  thing_str = "THE DOOR";
+  
+  if (action == 0)
+  {
+    switch (room1_door_status)
+    {
+      case 0:
+        action = 2;
+        break;
+      case 1:
+        action = 4;
+        break;
+    }
+  }
+  
+  switch (action)
+  {
+    case 1:
+      if (room1_door_status == 1)
+      {
+        ACS_NamedExecute("on_open", 0);
+      }
+      else
+      {
+        ACS_NamedExecute("on_look", 0);
+      }
+      break;
+    case 2:
+      if (room1_door_status == 0)
+      {
+        ACS_NamedExecute("room01_door_open", 0);
+      }
+      else
+      {
+        ACS_NamedExecute("on_open", 0);
+      }
+      break;
+    case 3:
+      if (room1_door_status == 1)
+      {
+        ACS_NamedExecute("room01_door_close", 0);
+      }
+      else
+      {
+        ACS_NamedExecute("on_close", 0);      
+      }
+      break;
+    case 4:
+      if (entered_room_2 == 0)
+      {
+        messages_left = 3;
+        messages[2] = StrParam(l:"MSG_ROOM2_ENTER1");
+        messages[1] = StrParam(l:"MSG_ROOM2_ENTER2");
+        messages[0] = StrParam(l:"MSG_ROOM2_ENTER3");
+      }
+      else
+      {
+        messages[0] = StrParam(l:"MSG_ROOM2_REENTER");
+      }
+
+      ACS_NamedExecute("move_to_room", 0, 2, 5);
+      entered_room_2 = 1;
+      break;
+  }
+}
+
+script "room01_door_open" (void)
+{
+  SetActivator(playerTid);
+  SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
+  
+  ACS_NamedExecuteAlways("door_sound", 0);  
+  Polyobj_RotateLeft(1,8,48);
+  Delay(50);
+
+  messages_left = 2;
+  messages[1] = "THE DOOR IS OPENED.";
+  messages[0] = StrParam(l:"MSG_ROOM1_DOOR_OPEN");
+  ACS_NamedExecute("show_message", 0);
+  
+  room1_door_status = 1;
+}
+
+script "room01_door_close" (void)
+{
+  SetActivator(playerTid);
+  SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
+ 
+  ACS_NamedExecuteAlways("door_sound", 0);  
+  Polyobj_RotateRight(1,8,48);
+  Delay(50);
+
+  ACS_NamedExecute("on_close", 0);
+
+  room1_door_status = 0;
+}
+
+script "room01_wall" (void)
+{
+  thing_tag = "WALL";
+  thing_str = "WALL";
+  
+  str current_action = GetWeapon();
+  int action = 0;
+  
+  if (StrCmp(current_action, "Cursor_Look") == 0)
+  {
+    action = 1;
+  }
+  else if (StrCmp(current_action, "Cursor_Take") == 0)
+  {
+    action = 2;
+  }
+  else if (StrCmp(current_action, "Cursor_Open") == 0)
+  {
+    action = 3;
+  }
+  else if (StrCmp(current_action, "Cursor_Close") == 0)
+  {
+    action = 4;
+  }
+  else if (StrCmp(current_action, "Cursor_Use") == 0)
+  {
+    action = 5;
+  }
+  else if (StrCmp(current_action, "Cursor_Hit") == 0)
+  {
+    action = 6;
+  }
+  else if (StrCmp(current_action, "Cursor_Leave") == 0)
+  {
+    action = 7;
+  }
+  else if (StrCmp(current_action, "Cursor_Speak") == 0)
+  {
+    action = 8;
+  }
+  
+  switch(action)
+  {
+    case 0:
+    case 1:
+      ACS_NamedExecute("on_look", 0);
+      break;
+    default:
       break;
   }
 }

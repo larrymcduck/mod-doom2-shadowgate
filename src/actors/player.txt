@@ -13,7 +13,7 @@ actor ShadowgatePlayer : PlayerPawn
   Player.SideMove 0
   Player.JumpZ 0
   Player.ViewHeight 48
-  Player.AttackZOffset 16
+  Player.AttackZOffset 18
   
   Player.StartItem Cursor_Point
   Player.StartItem Cursor_Look
@@ -177,7 +177,7 @@ actor Cursor_Point : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Point_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Point_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -195,7 +195,7 @@ actor Cursor_Look : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Look_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Look_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -213,7 +213,7 @@ actor Cursor_Take : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Take_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Take_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -231,7 +231,7 @@ actor Cursor_Open : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Open_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Open_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -249,7 +249,7 @@ actor Cursor_Close : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Close_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Close_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -267,7 +267,7 @@ actor Cursor_Use : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Use_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Use_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -285,7 +285,7 @@ actor Cursor_Hit : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "sg_Hit_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "sg_Hit_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -303,7 +303,7 @@ actor Cursor_Leave : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Leave_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Leave_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready
@@ -321,7 +321,7 @@ actor Cursor_Speak : Cursor_base
   States
   {
     Fire:
-      NONE A 1 A_FireBullets(0, 0, 1, 1, "Speak_Puff") 
+      NONE A 1 A_FireBullets(0.0, 0.0, 0, 1, "Speak_Puff") 
       NONE A 1 A_ReFire
       NONE A 1
       Goto Ready

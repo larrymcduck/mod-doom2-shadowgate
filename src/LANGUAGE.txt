@@ -7,27 +7,71 @@ MSG_COMMON_NO_TAKE = "YOU CAN'T TAKE IT!";
 
 MSG_COMMON_NOTHING = "NOTHING HAPPENED.";
 
-MSG_COMMON_NO_USE = "YOU CAN'T USE WHAT YOU\n"
+MSG_COMMON_NO_USE = "YOU CAN'T USE WHAT YOU\n\n"
                     "DIDN'T TAKE.";
 
-MSG_COMMON_NO_LEAVE = "YOU CAN'T DROP WHAT YOU\n"
+MSG_COMMON_NO_LEAVE = "YOU CAN'T DROP WHAT YOU\n\n"
                       "DIDN'T TAKE.";
 
-MSG_COMMON_EXPECTED = "WHAT YOU EXPECTED HASN'T\n"
+MSG_COMMON_EXPECTED = "WHAT YOU EXPECTED HASN'T\n\n"
                       "HAPPENED.";
 
 MSG_COMMON_OUCH = "OUCH! THAT SMARTS!";
+
+MSG_COMMON_WAISTING = "YOU SEEM TO BE WASTING\n\n"
+                      "YOUR TIME.";
 
 // --- common ---
 
 
 // --- room 1 ---
 
-MSG_ROOM1_SKULL_LOOK = "IT'S THE SKULL OF SOME\n"
-                       "CREATURE. ITS MEANING\n"
-                       "SEEMS QUITE CLEAR: DEATH\n"
+MSG_ROOM1_SKULL_LOOK = "IT'S THE SKULL OF SOME\n\n"
+                       "CREATURE. ITS MEANING\n\n"
+                       "SEEMS QUITE CLEAR: DEATH\n\n"
                        "LURKS INSIDE.";
+
+MSG_ROOM1_SKULL_OPEN = "AS IF BY MAGIC, THE\n\n"
+                       "SKULL RISES.";
+
 
 MSG_ROOM1_KEY1_LOOK = "IT'S A SMALL IRON KEY.";
 
+MSG_ROOM1_DOOR_LOOK = "IT'S A HEAVY WOODEN DOOR\n\n"
+                      "WITH IRON HINGES.";
+
+MSG_ROOM1_DOOR_OPEN = "IT'S THE DOOR LEADING\n\n"
+                      "INTO THE CASTLE\n\n"
+                      "SHADOWGATE.";
+
+MSG_ROOM1_WALL_LOOK = "IT'S A STONE WALL.";
+
+MSG_ROOM1_RENTER = "IT'S THE ENTRANCE TO\n\n"
+                   "SHADOWGATE. YOU CAN HEAR\n\n"
+                   "WOLVES HOWLING DEEP IN\n\n"
+                   "THE FOREAST BEHIND YOU...";
+
 // --- room 1 ---
+
+// --- room 2 ---
+
+MSG_ROOM2_ENTER1 = "\"THAT PITIFUL WIZARD\n\n"
+                   "LAKMIR WAS A FOOL TO\n\n"
+                   "SEND A BUFFOON LIKE YOU\n\n"
+                   "TO STOP ME.";
+
+MSG_ROOM2_ENTER2 = "YOU WILL SURELY REGRET\n\n"
+                   "IT FOR THE ONLY THING\n\n"
+                   "HERE FOR YOU IS A\n\n"
+                   "HORRIBLE DEATH!\"";
+
+MSG_ROOM2_ENTER3 = "THE SOUND OF MANIACAL\n\n"
+                   "LAUGHTER ECHOS IN YOUR\n\n"
+                   "EARS.";
+
+MSG_ROOM2_REENTER = "YOU STAND IN A LONG\n\n"
+                    "CORRIDOR. HUGE STONE\n\n"
+                    "ARCHWAYS LINE THE ENTIRE\n\n"
+                    "HALL.";
+
+// --- room 2 ---
