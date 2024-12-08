@@ -18,31 +18,3 @@ actor room_object
       Stop
   }
 }
-
-actor transition
-{
-  Radius 32
-  Height 56
-  -SOLID
-  +NoGravity
-
-  States
-  {
-    Spawn:
-      NONE A 0
-      NONE A 1
-      Stop
-  }
-}
-
-actor transition_forward : transition
-{
-  States
-  {
-    Spawn:
-      SGFW A 0
-      SGFW A 0 A_PlaySound("")
-      SGFW ABCDE 7
-      Stop
-  }
-}

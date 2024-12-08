@@ -15,15 +15,6 @@ actor ShadowgatePlayer : PlayerPawn
   Player.ViewHeight 48
   Player.AttackZOffset 18
   
-  Player.StartItem Cursor_Point
-  Player.StartItem Cursor_Look
-  Player.StartItem Cursor_Take
-  Player.StartItem Cursor_Open
-  Player.StartItem Cursor_Close
-  Player.StartItem Cursor_Use
-  Player.StartItem Cursor_Hit
-  Player.StartItem Cursor_Leave
-  Player.StartItem Cursor_Speak
   Player.WeaponSlot 1, Cursor_Look
   Player.WeaponSlot 2, Cursor_Take
   Player.WeaponSlot 3, Cursor_Open
@@ -33,6 +24,19 @@ actor ShadowgatePlayer : PlayerPawn
   Player.WeaponSlot 7, Cursor_Leave
   Player.WeaponSlot 8, Cursor_Speak
   Player.WeaponSlot 9, Cursor_Point
+  
+  Player.StartItem Cursor_Point
+  Player.StartItem Cursor_Look
+  Player.StartItem Cursor_Take
+  Player.StartItem Cursor_Open
+  Player.StartItem Cursor_Close
+  Player.StartItem Cursor_Use
+  Player.StartItem Cursor_Hit
+  Player.StartItem Cursor_Leave
+  Player.StartItem Cursor_Speak
+//  Player.StartItem Torch1, 60
+  Player.StartItem Torch1, 8
+  
 
 States
   {
@@ -327,3 +331,10 @@ actor Cursor_Speak : Cursor_base
       Goto Ready
   }
 }
+
+actor Torch1 : Inventory
+{
+  Inventory.MaxAmount 60
+}
+
+actor Torch2 : Torch1 {}

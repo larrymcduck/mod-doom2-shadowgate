@@ -1,10 +1,10 @@
-// Room 1
+// --- room 1 ---
 
 Model room01_Skull
 {
   Path "models/room01"
-  Model 0 "rm1_06.md2"
-  Skin 0 "rm1_06.png"
+  Model 0 "skull.md2"
+  Skin 0 "skull.png"
   Scale 16.12 16.12 19.29
   Offset 0.0 0.0 0.0
   FrameIndex R1SK A 0 0
@@ -13,23 +13,11 @@ Model room01_Skull
 Model room01_Key1
 {
   Path "models/room01"
-  Model 0 "rm1_key.md2"
-  Skin 0 "rm1_key.png"
+  Model 0 "key.md2"
+  Skin 0 "key.png"
   Scale 16.0 12.0 19.29
   Offset 0.0 2.5 1.0
   FrameIndex KEY1 A 0 0
 }
 
-Model transition_forward
-{
-  Path "models/transitions"
-  Model 0 "forward.md2"
-  Skin 0 "transition.png"
-  Scale 1.0 1.0 1.0
-  Offset 0.0 0.0 0.0
-  FrameIndex SGFW A 0 0
-  FrameIndex SGFW B 0 1
-  FrameIndex SGFW C 0 2
-  FrameIndex SGFW D 0 3
-  FrameIndex SGFW E 0 4
-}
+// --- room 1 ---

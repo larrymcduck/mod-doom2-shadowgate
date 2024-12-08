@@ -1,0 +1,23 @@
+texture WAITPEN1
+pic WAITPEN1 tics 8
+pic WAITPEN2 tics 8
+
+// torch 1 bright
+texture TORCH1
+pic TORCH1 rand 2 4
+pic TORCH2 rand 2 4
+
+// torch 1 dim
+texture TORCH3
+pic TORCH3 rand 2 4
+pic TORCH4 rand 2 4
+
+// torch 2 bright
+texture TORCH5
+pic TORCH5 rand 2 4
+pic TORCH6 rand 2 4
+
+// torch 2 dim
+texture TORCH7
+pic TORCH7 rand 2 4
+pic TORCH8 rand 2 4

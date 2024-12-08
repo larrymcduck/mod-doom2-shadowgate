@@ -1,10 +1,36 @@
 height 0;
-Resolution 640,380;
+Resolution 320,190;
 monospacefonts true, "0";
 interpolatehealth true, 6;
 
 statusbar fullscreen, fullscreenoffsets, forcescaled
 {
+  DrawImage "TRCHBACK", -40, 1;
+  
+  InInventory Torch1, 16
+  {
+    DrawImage "TORCH1", -31, 6;
+  }
+  Else
+  {
+    InInventory Torch1, 1
+    {
+      DrawImage "TORCH3", -30, 10;
+    }
+  }
+
+  InInventory Torch2, 16
+  {
+    DrawImage "TORCH5", -20, 6;
+  }
+  Else
+  {
+    InInventory Torch2, 1
+    {
+      DrawImage "TORCH7", -19, 10;
+    }
+  }
+
   IsSelected Cursor_Point
   {
     DrawImage "POINT", -3+center, 0+center; 

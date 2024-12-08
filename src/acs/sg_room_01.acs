@@ -139,7 +139,7 @@ script "room01_door" (int action)
       }
       break;
     case 4:
-      if (entered_room_2 == 0)
+      if (entered_room[1] == 0)
       {
         messages_left = 3;
         messages[2] = StrParam(l:"MSG_ROOM2_ENTER1");
@@ -152,7 +152,6 @@ script "room01_door" (int action)
       }
 
       ACS_NamedExecute("move_to_room", 0, 2, 5);
-      entered_room_2 = 1;
       break;
   }
 }
